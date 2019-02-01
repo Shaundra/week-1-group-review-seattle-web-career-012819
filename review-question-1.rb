@@ -1,4 +1,5 @@
 ## QUESTION 1
+# FYI Copy-pasted array of hashes, so answers use symbols instead of strings.
 
 pokemon = [
   {
@@ -62,8 +63,24 @@ pokemon = [
 
 
 # How would you get the url for Bulbasaur's ability?
+  bulb_url = ""
+  pokemon.each do |poke|
+     bulb_url << poke[:abilities][0][:ability][:url] if poke[:name] == "bulbasaur"
+  end
+  bulb_url
+
 # How would you return the first pokemon with base experience over 40?
+  pokemon.find do |poke|
+    poke[:base_experience] > 40
+  end
+
 # How would you return ALL OF THE pokemon with base experience over 40? (Gotta catch em all)
+  pokemon.select do |poke|
+    poke[:base_experience] > 40
+  end
+
 # How would you return an array of all of the pokemon's names?
-# How would you determine whether or not the pokemon array contained any pokemon with a weight greater than 60?
-#  whatever method you use should return true if there are any such pokemon, false if not.
+  pokemon.map { |poke| poke[:name] }
+
+# How would you determine whether or not the pokemon array contained any pokemon with a weight greater than 60?  whatever method you use should return true if there are any such pokemon, false if not.
+  pokemon.any? { |poke| poke[:weight] > 60 }
